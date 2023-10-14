@@ -68,6 +68,7 @@ from sklearn.preprocessing import QuantileTransformer
 ```
 qt=QuantileTransformer(output_distribution='normal')
 ```
+```
 df["Moderate Negative Skew_1"]=qt.fit_transform(df[["Moderate Negative Skew"]])
 ```
 
@@ -88,6 +89,14 @@ plt.show()
 ```
 
 ![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/83ccda64-91b1-4fc8-b902-7b0817d3db42)
+```
+df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df['Highly Negative Skew'],line='45')
+plt.show()
+```
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/b7b6d939-3fc4-44d8-85bf-b0c05e8f7426)
+
 
 
 
