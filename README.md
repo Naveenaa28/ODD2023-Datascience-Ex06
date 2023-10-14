@@ -14,8 +14,10 @@ STEP 3:Apply Feature Transformation techniques to all the features of the data s
 STEP 4:Print the transformed features
 
 ## DEVELOPED BY:
+``
 NAME:Naveenaa V.R
 REG NO:212221220035
+```
 
 ```
 import pandas as pd
