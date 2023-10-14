@@ -15,11 +15,10 @@ STEP 4:Print the transformed features
 
 ## DEVELOPED BY:
 ```
-NAME:Naveenaa V.R
-REG NO:212221220035
+NAME:NAVEENAA.V.R
+REG NO:2122212220035
 ```
-
-
+## PROGRAM:
 ```
 import pandas as pd
 from scipy import stats
