@@ -13,7 +13,7 @@ STEP 3:Apply Feature Transformation techniques to all the features of the data s
 
 STEP 4:Print the transformed features
 
-## PROGRAM::
+## DEVELOPED BY:
 NAME:Naveenaa V.R
 REG NO:212221220035
 
@@ -78,24 +78,95 @@ df
 
 ![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/e33ffa0a-2d9b-4663-a1b2-cbcbd1a0da55)
 ```
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 import statsmodels.api as sm
 import scipy.stats as stats
-```
-```
-sm.qqplot(df['Moderate Negative Skew'],line='45')
+from sklearn.preprocessing import QuantileTransformer
+
+df=pd.read_csv("data_trans.csv")
+df
+
+sm.qqplot(df.HighlyPositiveSkew,fit=True,line='45')
+plt.show()
+
+sm.qqplot(df.HighlyNegativeSkew,fit=True,line='45')
+plt.show()
+
+sm.qqplot(df.ModeratePositiveSkew,fit=True,line='45')
+plt.show()
+
+sm.qqplot(df.ModerateNegativeSkew,fit=True,line='45')
+plt.show()
+
+df['HighlyPositiveSkew']=np.log(df.HighlyPositiveSkew)
+sm.qqplot(df.HighlyPositiveSkew,fit=True,line='45')
+plt.show()
+
+df['HighlyNegativeSkew']=np.log(df.HighlyNegativeSkew)
+sm.qqplot(df.HighlyPositiveSkew,fit=True,line='45')
+plt.show()
+
+df['ModeratePositiveSkew_1'], parameters=stats.yeojohnson(df.ModeratePositiveSkew)
+sm.qqplot(df.ModeratePositiveSkew_1,fit=True,line='45')
+plt.show()
+
+df['ModerateNegativeSkew_1'], parameters=stats.yeojohnson(df.ModerateNegativeSkew)
+sm.qqplot(df.ModerateNegativeSkew_1,fit=True,line='45')
+plt.show()
+
+from sklearn.preprocessing import PowerTransformer
+transformer=PowerTransformer("yeo-johnson")
+df['ModerateNegativeSkew_2']=pd.DataFrame(transformer.fit_transform(df[['ModerateNegativeSkew']]))
+sm.qqplot(df.ModerateNegativeSkew_2,fit=True,line='45')
+plt.show()
+
+from sklearn.preprocessing import QuantileTransformer
+qt= QuantileTransformer(output_distribution = 'normal')
+df['ModerateNegativeSkew_2']=pd.DataFrame(qt.fit_transform(df[['ModerateNegativeSkew']]))
+
+sm.qqplot(df.ModerateNegativeSkew_2,fit=True,line='45')
+plt.show()
+
+df2=df.copy()
+
+df2['HighlyPositiveSkew']= 1/df2.HighlyPositiveSkew
+sm.qqplot(df2.HighlyPositiveSkew,fit=True,line='45')
+
 plt.show()
 ```
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/d4e9f315-28f7-46f5-9b11-7e8a24e62c70)
 
-![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/83ccda64-91b1-4fc8-b902-7b0817d3db42)
-```
-df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
-sm.qqplot(df['Highly Negative Skew'],line='45')
-plt.show()
-```
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/35606014-aee2-4169-a518-7a4b9c3a684c)
 
-![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/b7b6d939-3fc4-44d8-85bf-b0c05e8f7426)
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/fda6e83f-0a06-422f-91cd-e3b80f0aec97)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/9930abc0-3fae-4121-a02a-9c6511cdd2f9)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/94c42ac8-54c2-4c91-8610-afc59304d0e4)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/a4e99713-1b43-40ca-a1de-b8d241a1886b)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/23051a87-a23f-4c69-91c1-60ce51dee103)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/ac326a53-b6e3-4588-a13c-2b0bffe352b2)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/1468ae50-884b-499a-9e05-6e55f1b1ddee)
+
+![image](https://github.com/Naveenaa28/ODD2023-Datascience-Ex06/assets/131433133/d4f725dd-1c93-4784-8533-4c88a79d6e19)
+## RESULT:
+Thus feature transformation is done for the given dataset.
+
+
+
+
+
+
+
+
+
+
 
 
 
